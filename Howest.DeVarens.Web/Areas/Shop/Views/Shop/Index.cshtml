@@ -1,0 +1,26 @@
+﻿@model ProductsIndexViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Winkel";
+}
+
+
+@section Stylesheets {
+    <link rel="stylesheet" href="~/css/stylesheet.css" />
+}
+
+<section class="py-3 container">
+    <div class="row py-lg-3">
+        <div class="col-lg-6 col-md-8 mx-auto text-center">
+            <h1 class="fw-light">Producten</h1>
+        </div>
+
+        @Html.Partial("SearchPartialView", new SearchViewModel())
+
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <partial name="ProductsPartialView" model="@Model" />
+            </div>
+        </div>
+    </div>
+</section>

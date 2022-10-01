@@ -1,0 +1,36 @@
+﻿@model FormOfEducationIndexViewModel
+
+@{ 
+    Layout = "_Layout"; 
+    ViewData["Title"] = "Opleidingsvorm";
+}
+
+<section class="py-3 text-center container">
+    <div class="row py-lg-3">
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+<h1 class="fw-light">Opleidingsvormen</h1>
+    <h1><a asp-controller="FormOfEducation" asp-action="Create"class="btn btn-outline-primary">Aanmaken</a>
+        </h1>
+
+<table class="table table-hover table-responsive">
+<tr>
+    <th>Opleidingsvorm</th>
+    <th colspan="2">Actie</th>
+</tr>
+
+@foreach(var form in Model.FormsOfEducation)
+{
+    <tr>
+        <td>@form.Name</td>
+        <td>
+            <a asp-controller="FormOfEducation"
+                asp-action="Details"
+                asp-route-Id="@form.Id" class="btn btn-info">Details</a>
+        </td>
+    </tr>
+}
+</table>
+        </div>
+    </div>
+</section>

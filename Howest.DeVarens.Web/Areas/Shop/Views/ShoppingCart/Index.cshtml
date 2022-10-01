@@ -1,0 +1,73 @@
+﻿@model ShoppingcartIndexViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Shoppingcart";
+}
+
+@section Stylesheets {
+    <link rel="stylesheet" href="~/css/stylesheet.css" />
+}
+
+<section class="py-3 container">
+    <div class="row py-lg-3">
+        <div class="col-lg-6 col-md-8 mx-auto text-center">
+            <h1 class="fw-light">Producten</h1>
+        </div>
+        @if (Model.ShoppingcartItems != null)
+        {
+            <div class="container">
+                <table class="table table-hover table-responsive shoppingcartitems">
+                    <tr>
+                        <th>Afbeelding</th>
+                        <th>Product</th>
+                        <th>Prijs</th>
+                        <th>Hoeveelheid</th>
+                        <th>Totaalprijs</th>
+                    </tr>
+                    @foreach (var shoppingcartItem in Model.ShoppingcartItems)
+                    {
+                        <tr>
+                            <td class="align-middle"><img src="~/images/@shoppingcartItem.ProductMediaPath" /></td>
+                            <td class="align-middle">@shoppingcartItem.ProductName</td>
+                            <td class="align-middle">@shoppingcartItem.ProductPrice.ToString("€ #,##0.00")</td>
+                            <td class="align-middle">
+                                <select class="form-control form-select"
+                                        asp-for="@shoppingcartItem.Quantity"
+                                        asp-items="@shoppingcartItem.Quantities"
+                                        onchange="location.href = '/ShopingCart/UpdateItem/@shoppingcartItem.ProductId/' + this.value">
+                                </select>
+                            </td>
+                            <td class="align-middle">
+                                @((shoppingcartItem.ProductPrice * shoppingcartItem.Quantity)
+                                .ToString("€ #,##0.00"))
+                            </td>
+                        </tr>
+
+                    }
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="align-middle">@Model.TotalPrice.ToString("€ #,##0.00")</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="gy-3 text-center">
+                <a asp-controller="Shop"
+                   asp-action="Index" class="btn btn-primary text-white">Terug naar winkel</a>
+                <a asp-controller="ShoppingCart"
+                   asp-action="Checkout" class="btn purplebackground text-white">Bestel</a>
+            </div>
+        }
+        else
+        {
+            <div class="gy-3 text-center">
+                <p>Geen producten in de winkelwagen.</p>
+                <a asp-controller="Shop"
+                   asp-action="Index" class="btn btn-primary text-white">Terug naar winkel</a>
+            </div>
+        }
+    </div>
+</section>

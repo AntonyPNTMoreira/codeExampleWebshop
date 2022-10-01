@@ -1,0 +1,29 @@
+﻿@model OrderIndexViewModel
+
+<table class="table table-hover table-responsive">
+    <tr>
+        <th>Id</th>
+        <th colspan="2">Verzend Datum</th>
+        <th colspan="3">Aangemaakt Datum</th>
+        <th colspan="4">Verwijderde Datum</th>
+        <th colspan="5">Aangepaste Datum</th>
+        <th colspan="6">Bestelling Status</th>
+        <th colspan="7">Actie</th>
+    </tr>
+    @foreach (var order in Model.Orders)
+    {
+<tr>
+    <td>@order.Id</td>
+    <td colspan="2">@((order.ShippingDate == null) ? "/": order.ShippingDate)</td>
+    <td colspan="3">@((order.CreationDate == null) ? "/": order.CreationDate)</td>
+    <td colspan="4">@((order.DeletionDate == null) ? "/": order.DeletionDate)</td>
+    <td colspan="5">@((order.UpdateDate == null) ? "/": order.UpdateDate)</td>
+    <td colspan="6">@(order.IsOpen ? "Open" : "Gesloten")</td>
+    <td colspan="7">
+        <a asp-controller="Order"
+           asp-action="Details"
+           asp-route-Id="@order.Id" class="btn btn-info">Details</a>
+    </td>
+</tr>
+    }
+</table>

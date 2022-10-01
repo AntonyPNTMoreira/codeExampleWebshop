@@ -1,0 +1,67 @@
+﻿@model ProductDetailViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="py-3 container">
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-6">
+            <div id="slideshow" class="carousel slide" data-bs-interval="false" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach (var image in Model.Media)
+                    {
+                        <div class="carousel-item @(image == Model.Media[0] ? "active" : "")">
+                            <img src="/images/@image.Path" alt="@image.Title" class="rounded mx-auto d-block w-100" style="margin-bottom: -24px"><img/>
+                        </div>
+                    }
+                </div>
+                @if (Model.Media.Count() > 1)
+                {
+                    <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    </button>                        
+                }
+                </div>  
+            </div>
+
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+
+                    <p class="card-text">@Model.Description</p>
+
+                    <p class="card-text"><table class="table table-sm table-borderless">
+                        <tbody>
+                            <tr>
+                            <th scope="row">Prijs:</th>
+                            <td>€@Model.Price</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Categorie:</th>
+                            <td>@Model.Category</td>
+                            </tr>
+                            <tr>
+                            <th scope="row">Opleidingsvorm:</th>
+                            <td>@Model.FormOfEducation</td>
+                            </tr>
+                        </tbody>
+                    </table></p>
+                    <div class="d-grid gap-2 col-4">
+                    <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id"
+                        class="btn btn-primary">Aanpassen</a>
+                    <a asp-controller="Product" asp-action="ConfirmDelete" asp-route-id="@Model.Id"
+                        class="btn btn-danger">Verwijderen</a>
+                    <a asp-area="Admin" asp-controller="Product" asp-action="Index"
+                        class="btn btn-secondary">Terugkeren</a>
+                    </div>
+                </div>
+            </div>     
+        </div>
+    </div>
+</section>

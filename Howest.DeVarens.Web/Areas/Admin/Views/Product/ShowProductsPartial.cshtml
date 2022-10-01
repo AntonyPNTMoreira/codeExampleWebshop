@@ -1,0 +1,60 @@
+﻿@model ProductsIndexViewModel
+
+@{
+    int teller = 0;
+}
+
+<link rel="stylesheet" href="~/css/stylesheet.css" />
+
+
+<div class="container ">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    @if (product.Media.Count() > 1)
+                    {
+                        <div id="slideshow@(teller)" class="carousel slide" data-bs-interval="false" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach (var image in product.Media)
+                                {
+                                    <div class="carousel-item card-img-top-fit @(image == product.Media[0] ? "active" : "")">
+                                        <img src="/images/@image.Path" alt="@image.Title" class="rounded mx-auto d-block card-img-top-fit"><img />
+                                    </div>
+                                }
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#slideshow@(teller)" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#slideshow@(teller++)" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <img src="/images/@product.Media[0].Path" alt="" class="rounded mx-auto d-block card-img-top-fit"><img />
+                    }
+
+                    <div class="card-body">
+                        <div class="gy-5">
+                            <h5 class="card-title">@product.Name</h5>
+                        </div>
+                        <div class="gy-5">
+                            <a asp-controller="Product"
+                               asp-action="Details"
+                               asp-route-Id="@product.Id" class="btn btn-info">Details</a>
+                            @if (product.DeletionDate != null)
+                            {
+                                <a asp-controller="Product"
+                                   asp-action="Create"
+                                   asp-route-Id="@product.Id" class="btn btn-danger">Ongedaan maken</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

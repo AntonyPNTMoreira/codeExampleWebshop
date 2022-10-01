@@ -1,0 +1,64 @@
+﻿@model OrderDetailViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Bestelling Details";
+}
+
+<section class="py-3 text-center container">
+    <div class="row py-lg-5">
+        <div>
+            <h1 class="fw-light">Bestelling details</h1>
+            <p>@Model.Id</p>
+            <p><strong>Bestelling status: </strong> <i>@(Model.IsOpen == true ? "open" : "gesloten") </i></p>  
+            <p><strong>Gemaakt op: </strong><i>@Model.CreationDate </i></p>
+
+                        <p class="lead text-black">
+                Er @(Model.ProductsCount == 1 ? "is" : "zijn")
+                <b>@Model.ProductsCount bestel product@(Model.ProductsCount == 1 ? "" : "en")</b>
+                in deze order.
+            </p>
+
+            <table class="table table-hover table-responsive">
+                <tr>
+                    <th>Id</th>
+                    <th>Naam</th>
+                    <th>Prijs</th>
+                    <th>Hoeveelheid</th>
+                    <th>Categorie</th>
+                    <th>Opleidingsvorm</th>
+                    <th>Totaal</th>
+                </tr>
+
+                @foreach(var orderItem in Model.OrderItems)
+                {
+                        <tr>
+                        <td>@orderItem.Product.Id</td>
+                        <td> 
+                            <a asp-controller="Product" asp-action="Details" asp-route-id="@orderItem.Product.Id"
+                                >@orderItem.Product.Name</a>
+                        </td>
+                        <td>@orderItem.Quantity</td>
+                        <td>@orderItem.Product.Price.ToString("€ #,##0.00")</td>
+                        <td>@orderItem.Product.Category</td>
+                        <td>@orderItem.Product.FormOfEducation</td>
+                        <td>@((orderItem.Quantity * orderItem.Product.Price).ToString("€ #,##0.00"))</td>
+                        </tr>
+                }
+                    <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="align-middle">@Model.TotalPrice.ToString("€ #,##0.00")</td>
+                </tr>
+                </table>
+            <a asp-area="Admin" asp-controller="Order" asp-action="Index"
+               class="btn btn-secondary">Terugkeren</a>
+
+        </div>
+    </div>
+</section>
+

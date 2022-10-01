@@ -1,0 +1,12 @@
+﻿@model ProductCreateEditViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Pas product aan";
+}
+
+<div class="py-3 d-flex align-items-center justify-content-center">
+    <form asp-controller="Product" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <h1>Pas een product aan</h1>
+        <partial name="CreateEditPartialView" model="@Model" />
+    </form>
+</div>

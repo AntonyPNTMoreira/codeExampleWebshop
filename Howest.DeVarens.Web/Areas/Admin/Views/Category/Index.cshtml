@@ -1,0 +1,36 @@
+﻿@model CategoriesIndexViewModel
+
+@{ 
+    Layout = "_Layout"; 
+    ViewData["Title"] = "Categories";
+}
+
+<section class="py-3 text-center container">
+    <div class="row py-lg-3">
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+<h1 class="fw-light">Categorieën</h1>
+    <h1><a asp-controller="Category" asp-action="Create"class="btn btn-outline-primary">Aanmaken</a>
+        </h1>
+
+<table class="table table-hover table-responsive">
+<tr>
+    <th>Categorie</th>
+    <th colspan="2">Actie</th>
+</tr>
+
+@foreach(var category in Model.Categories)
+{
+    <tr>
+        <td>@category.Name</td>
+        <td>
+            <a asp-controller="Category"
+                asp-action="Details"
+                asp-route-Id="@category.Id" class="btn btn-info">Details</a>
+        </td>
+    </tr>
+}
+</table>
+        </div>
+    </div>
+</section>

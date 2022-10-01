@@ -1,0 +1,18 @@
+﻿@model CategoryCreateEditViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Maak een categorie aan";
+}
+
+<div class="py-3 d-flex align-items-center justify-content-center">
+    <form asp-controller="Category" asp-action="Create" method="post" enctype="multipart/form-data">
+        <h1>Maak een categorie aan</h1>
+        <partial name="CategoryPartialView" model="Model" />
+        <div>
+            <span class="text-danger">@TempData["Error"]</span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Opslaan</button>
+        <a asp-area="Admin" asp-controller="Category" asp-action="Index"
+           class="btn btn-secondary mt-2">Terugkeren</a>
+    </form>
+</div>

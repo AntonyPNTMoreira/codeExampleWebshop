@@ -1,0 +1,18 @@
+﻿@model FormOfEducationCreateViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Pas een categorie aan";
+}
+
+<div class="py-3 d-flex align-items-center justify-content-center">
+    <form asp-controller="FormOfEducation" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <h1>Pas een opleidingsvorm aan</h1>
+        <partial name="FormOfEducationPartialView" model="Model" />
+        <div>
+            <span class="text-danger">@TempData["Error"]</span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Opslaan</button>
+        <a asp-area="Admin" asp-controller="FormOfEducation" asp-action="Index"
+           class="btn btn-secondary mt-2">Terugkeren</a>
+    </form>
+</div>

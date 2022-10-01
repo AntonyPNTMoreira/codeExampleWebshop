@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="">
+    <meta name="author" content="Howest Graduaat Programmeren">
+
+    <title>@ViewData["Title"] - Webshop De Varens</title>
+
+    <link rel="canonical" href="">
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/stylesheet.css" />
+    @RenderSection("Stylesheets", required: false)
+</head>
+<body style="background-color:ghostwhite">
+    <header class="bg-light">
+        <nav class="navbar navbar-expand-md navbar-light border-bottom box-shadow px-5" aria-label="De Varens Webshop navigatie">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://www.devarens.be/" target="_blank">
+                    <img src="~/images/deVarensLogo.png" alt="Logo De Varens" height="50">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarWebshop" aria-controls="navbarWebshop" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarWebshop">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Homepagina</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Shop" asp-controller="Shop" asp-action="Index">Winkel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Shop" asp-controller="ShoppingCart" asp-action="Index">Winkelmand</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse float-end" id="navbarNavDarkDropdown" style="justify-content:right; margin-right: 2em">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white p-2 purplebackground" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Beheer
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Producten</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Categoriëen</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="FormOfEducation" asp-action="Index">Opleidingsvormen</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Order" asp-action="Index">Bestellingen</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer class="border-top footer text-muted">
+        <div class="px-5">
+            &copy; @DateTime.Now.Year De Varens
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

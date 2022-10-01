@@ -1,0 +1,29 @@
+﻿@model CategoryDetailViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="py-3 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">@Model.Name</h1>
+            <p class="lead text-black">
+                Er @(Model.ProductsCount == 1 ? "is" : "zijn")
+                <b>@Model.ProductsCount product@(Model.ProductsCount == 1 ? "" : "en")</b>
+                in deze categorie.
+            </p>
+            <p>@Model.Description</p>
+            <a asp-controller="Category" asp-action="Edit" asp-route-id="@Model.Id"
+               class="btn btn-primary">Aanpassen</a>
+            <a asp-controller="Category" asp-action="ConfirmDelete" asp-route-id="@Model.Id"
+               class="btn btn-danger">Verwijderen</a>
+            <a asp-area="Admin" asp-controller="Category" asp-action="Index"
+               class="btn btn-secondary">Terugkeren</a>            
+        </div>
+        <div>
+            <span class="text-danger">@TempData["Error"]</span>
+        </div>
+    </div>
+</section>

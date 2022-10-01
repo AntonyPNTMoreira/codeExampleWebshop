@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Confirm?";
+}
+<section class="py-3 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+<div class="alert alert-primary" role="alert">
+    Ben je zeker?
+    <a asp-controller="FormOfEducation"
+       asp-action="Index" class="btn btn-primary">Nee</a>
+    <a asp-controller="FormOfEducation"
+       asp-action="Delete"
+       asp-route-id="@ViewBag.Id" class="btn btn-danger">Ja</a>
+</div>
+
+        </div>
+    </div>
+</section>

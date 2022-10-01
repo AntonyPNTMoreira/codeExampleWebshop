@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "ConfirmDelete";
+}
+
+<section class="py-3 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Bevestig verwijderen</h1>
+            <div class="alert alert-info" role="alert">
+                <p>Ben je zeker?</p>
+                <a asp-controller="Category"
+                   asp-action="Delete"
+                   asp-route-id="@ViewBag.Id" class="btn btn-danger">Ja</a>
+                <a asp-controller="Category"
+                   asp-action="Index" class="btn btn-primary">Nee</a>                   
+            </div>
+        </div>
+    </div>
+</section>

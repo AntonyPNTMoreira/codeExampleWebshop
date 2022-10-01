@@ -1,0 +1,31 @@
+﻿@model SearchViewModel
+
+@{
+    ViewData["Title"] = "SearchPartialView";
+}
+
+<div class="py-3 d-flex align-items-center justify-content-center">
+
+    <form style="margin-bottom:15px" class="row" asp-controller="Shop" asp-action="Search" method="post" enctype="multipart/form-data">
+
+        <div class="form-group py-2 col">
+            <label asp-for="CategoryIds" class="p-2">Categorie:</label>
+            <select class="form-control form-select"
+                    asp-for="CategoryIds" asp-items="@ViewBag.Categories"></select>
+        </div>
+        <div class="form-group py-2 col">
+            <label asp-for="CategoryIds" class="p-2">Opleidingsvorm:</label>
+            <select class="form-control form-select"
+                    asp-for="FormOfEducationIds" asp-items="@ViewBag.FormOfEducations"></select>
+        </div>
+        <div class="form-group py-2 col">
+            <label asp-for="SearchTerm" class="p-2">Zoekterm:</label>
+            <input asp-for="SearchTerm" class="form-control">
+            <span asp-validation-for="SearchTerm" class="text-danger"></span>
+            <button type="submit" class="btn mt-2 float-end orangebackground text-white">Zoeken</button>
+        </div>
+    </form>
+</div>
+        <div class="d-flex justify-content-center">
+            <span class="text-danger">@TempData["Error"]</span>
+        </div>
